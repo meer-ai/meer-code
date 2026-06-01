@@ -1,0 +1,24 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist-electron/**"],
+    },
+    "dev": {
+      "dependsOn": ["meer-code#build"],
+      "persistent": true,
+    },
+    "start": {
+      "dependsOn": ["build", "@t3tools/web#build", "meer-code#build"],
+      "cache": false,
+      "persistent": true,
+    },
+    "smoke-test": {
+      "dependsOn": ["build", "@t3tools/web#build", "meer-code#build"],
+      "cache": false,
+      "outputs": [],
+    },
+  },
+}
