@@ -14,6 +14,7 @@ import {
   DEFAULT_GIT_TEXT_GENERATION_MODEL,
   DEFAULT_GIT_TEXT_GENERATION_MODEL_BY_PROVIDER,
   DEFAULT_SERVER_SETTINGS,
+  defaultInstanceIdForDriver,
   isProviderDriverKind,
   type ModelSelection,
   type ProviderInstanceConfig,
@@ -166,6 +167,8 @@ const decodeServerSettingsJsonExit = Schema.decodeUnknownExit(ServerSettingsJson
 
 type LegacyProviderSettings = ServerSettings["providers"][keyof ServerSettings["providers"]];
 
+const MEER_PROVIDER = ProviderDriverKind.make("meer");
+
 const getLegacyProviderSettings = (
   settings: ServerSettings,
   provider: ProviderDriverKind,
@@ -196,21 +199,71 @@ function resolveTextGenerationProvider(settings: ServerSettings): ServerSettings
 }
 
 function fallbackTextGenerationProvider(settings: ServerSettings): ServerSettings {
-  const fallbackEntry = Object.entries(settings.providers).find(([, provider]) => provider.enabled);
-  const fallback = fallbackEntry ? ProviderDriverKind.make(fallbackEntry[0]) : undefined;
+  const fallback = selectFallbackTextGenerationProvider(settings);
   if (!fallback) {
     return settings;
   }
 
   return {
     ...settings,
-    textGenerationModelSelection: {
-      instanceId: ProviderInstanceId.make(fallback),
-      model:
-        DEFAULT_GIT_TEXT_GENERATION_MODEL_BY_PROVIDER[fallback] ??
-        DEFAULT_GIT_TEXT_GENERATION_MODEL,
-    } satisfies ModelSelection,
+    textGenerationModelSelection: fallback,
   };
+}
+
+function selectFallbackTextGenerationProvider(
+  settings: ServerSettings,
+): ModelSelection | undefined {
+  const preferred = selectDefaultProviderFallback(settings, MEER_PROVIDER);
+  if (preferred) {
+    return preferred;
+  }
+
+  for (const [rawInstanceId, instanceConfig] of Object.entries(settings.providerInstances)) {
+    if (instanceConfig.enabled === false) {
+      continue;
+    }
+    return makeFallbackModelSelection(
+      ProviderInstanceId.make(rawInstanceId),
+      instanceConfig.driver,
+    );
+  }
+
+  for (const [rawProvider, legacyConfig] of Object.entries(settings.providers)) {
+    if (!legacyConfig.enabled || !isProviderDriverKind(rawProvider)) {
+      continue;
+    }
+    return makeFallbackModelSelection(defaultInstanceIdForDriver(rawProvider), rawProvider);
+  }
+
+  return undefined;
+}
+
+function selectDefaultProviderFallback(
+  settings: ServerSettings,
+  provider: ProviderDriverKind,
+): ModelSelection | undefined {
+  const instanceId = defaultInstanceIdForDriver(provider);
+  const instanceConfig = settings.providerInstances[instanceId];
+  if (instanceConfig !== undefined) {
+    return instanceConfig.driver === provider && instanceConfig.enabled !== false
+      ? makeFallbackModelSelection(instanceId, provider)
+      : undefined;
+  }
+
+  return getLegacyProviderSettings(settings, provider)?.enabled
+    ? makeFallbackModelSelection(instanceId, provider)
+    : undefined;
+}
+
+function makeFallbackModelSelection(
+  instanceId: ProviderInstanceId,
+  provider: ProviderDriverKind,
+): ModelSelection {
+  return {
+    instanceId,
+    model:
+      DEFAULT_GIT_TEXT_GENERATION_MODEL_BY_PROVIDER[provider] ?? DEFAULT_GIT_TEXT_GENERATION_MODEL,
+  } satisfies ModelSelection;
 }
 
 // Values under these keys are compared as a whole — never stripped field-by-field.

@@ -47,7 +47,7 @@ it.layer(NodeServices.layer)("dev-runner", (it) => {
   });
 
   describe("createDevRunnerEnv", () => {
-    it.effect("defaults MEER_CODE_HOME to ~/.t3 when not provided", () =>
+    it.effect("defaults MEER_CODE_HOME to ~/.meer-code when not provided", () =>
       Effect.gen(function* () {
         const path = yield* Path.Path;
         const env = yield* createDevRunnerEnv({
@@ -64,7 +64,7 @@ it.layer(NodeServices.layer)("dev-runner", (it) => {
           devUrl: undefined,
         });
 
-        assert.equal(env.MEER_CODE_HOME, path.resolve(NodeOS.homedir(), ".t3"));
+        assert.equal(env.MEER_CODE_HOME, path.resolve(NodeOS.homedir(), ".meer-code"));
       }),
     );
 

@@ -236,7 +236,7 @@ jobs:
         run: node scripts/update-release-package-versions.ts "${{ needs.preflight.outputs.version }}"
 
       - name: Install Spectre-mitigated MSVC libs
-        if: matrix.platform == 'win'
+        if: matrix.platform == 'win' && vars.MEER_CODE_WINDOWS_SIGNING == 'true'
         shell: pwsh
         env:
           MEER_CODE_WINDOWS_SIGNING: ${{ vars.MEER_CODE_WINDOWS_SIGNING }}
@@ -281,7 +281,7 @@ jobs:
              }
 
       - name: Prepare Azure Trusted Signing
-        if: matrix.platform == 'win'
+        if: matrix.platform == 'win' && vars.MEER_CODE_WINDOWS_SIGNING == 'true'
         shell: pwsh
         env:
           MEER_CODE_WINDOWS_SIGNING: ${{ vars.MEER_CODE_WINDOWS_SIGNING }}

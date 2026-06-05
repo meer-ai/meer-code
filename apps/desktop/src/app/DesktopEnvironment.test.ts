@@ -93,6 +93,20 @@ describe("DesktopEnvironment", () => {
     }),
   );
 
+  it.effect("defaults production data under ~/.meer-code", () =>
+    Effect.gen(function* () {
+      const environment = yield* makeEnvironment();
+
+      assert.equal(environment.isDevelopment, false);
+      assert.equal(environment.baseDir, "/Users/alice/.meer-code");
+      assert.equal(environment.stateDir, "/Users/alice/.meer-code/userdata");
+      assert.equal(
+        environment.serverSettingsPath,
+        "/Users/alice/.meer-code/userdata/settings.json",
+      );
+    }),
+  );
+
   it.effect("resolves picker defaults without nullish sentinels", () =>
     Effect.gen(function* () {
       const environment = yield* makeEnvironment();

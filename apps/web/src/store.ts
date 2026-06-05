@@ -1016,7 +1016,7 @@ function toLegacyProvider(providerName: string | null): ProviderDriverKind {
   if (isProviderDriverKindValue(providerName)) {
     return providerName;
   }
-  return ProviderDriverKind.make("codex");
+  return ProviderDriverKind.make("meer");
 }
 
 function attachmentPreviewRoutePath(attachmentId: string): string {

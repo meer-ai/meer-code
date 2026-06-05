@@ -248,4 +248,19 @@ describe("instance-scoped model selection", () => {
       model: "openai/gpt-5.5",
     });
   });
+
+  it("falls back to Meer while provider snapshots are unavailable", () => {
+    const settings: UnifiedSettings = {
+      ...DEFAULT_UNIFIED_SETTINGS,
+      textGenerationModelSelection: {
+        instanceId: ProviderInstanceId.make("missing_provider"),
+        model: "stale-model",
+      },
+    };
+
+    expect(resolveAppModelSelectionState(settings, [])).toEqual({
+      instanceId: ProviderInstanceId.make("meer"),
+      model: "default",
+    });
+  });
 });
