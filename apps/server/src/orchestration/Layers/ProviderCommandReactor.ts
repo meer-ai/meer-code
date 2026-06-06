@@ -316,6 +316,7 @@ const make = Effect.gen(function* () {
       return {
         modelSelection,
         info: configuredInfo.value,
+        usedFallback: false,
       };
     }
 
@@ -358,6 +359,7 @@ const make = Effect.gen(function* () {
     return {
       modelSelection: fallbackModelSelection,
       info: fallbackInfo,
+      usedFallback: true,
     };
   });
 
@@ -408,7 +410,11 @@ const make = Effect.gen(function* () {
       activeSession !== undefined &&
       activeSession.providerInstanceId !== undefined
         ? activeSession.providerInstanceId
-        : desiredInstanceId;
+        : thread.session !== null &&
+            requestedModelSelection !== undefined &&
+            !resolvedDesiredModelSelection.usedFallback
+          ? (thread.session.providerInstanceId ?? thread.modelSelection.instanceId)
+          : desiredInstanceId;
     const currentInfo =
       currentInstanceId === desiredInstanceId
         ? resolvedDesiredModelSelection.info
