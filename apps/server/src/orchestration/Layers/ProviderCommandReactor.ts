@@ -305,6 +305,62 @@ const make = Effect.gen(function* () {
       .pipe(Effect.map(Option.getOrUndefined));
   });
 
+  const resolveConfiguredModelSelection = Effect.fn("resolveConfiguredModelSelection")(function* (
+    threadId: ThreadId,
+    modelSelection: ModelSelection,
+  ) {
+    const configuredInfo = yield* providerService
+      .getInstanceInfo(modelSelection.instanceId)
+      .pipe(Effect.option);
+    if (Option.isSome(configuredInfo) && configuredInfo.value.enabled) {
+      return {
+        modelSelection,
+        info: configuredInfo.value,
+      };
+    }
+
+    const { textGenerationModelSelection: fallbackModelSelection } =
+      yield* serverSettingsService.getSettings;
+    const fallbackInfo = yield* providerService
+      .getInstanceInfo(fallbackModelSelection.instanceId)
+      .pipe(
+        Effect.mapError(
+          () =>
+            new ProviderAdapterRequestError({
+              provider: providerErrorLabelFromInstanceHint({
+                instanceId: String(fallbackModelSelection.instanceId),
+              }),
+              method: "thread.turn.start",
+              detail: `Thread '${threadId}' references provider instance '${modelSelection.instanceId}', but it is not configured in this build and fallback provider instance '${fallbackModelSelection.instanceId}' is unavailable.`,
+            }),
+        ),
+      );
+    if (!fallbackInfo.enabled) {
+      return yield* new ProviderAdapterRequestError({
+        provider: providerErrorLabelFromInstanceHint({
+          instanceId: String(fallbackModelSelection.instanceId),
+        }),
+        method: "thread.turn.start",
+        detail: `Thread '${threadId}' references provider instance '${modelSelection.instanceId}', but it is not configured in this build and fallback provider instance '${fallbackModelSelection.instanceId}' is disabled.`,
+      });
+    }
+
+    yield* Effect.logWarning(
+      "provider command reactor falling back from unavailable model selection",
+      {
+        threadId,
+        unavailableInstanceId: String(modelSelection.instanceId),
+        fallbackInstanceId: String(fallbackModelSelection.instanceId),
+        fallbackModel: fallbackModelSelection.model,
+      },
+    );
+    threadModelSelections.set(threadId, fallbackModelSelection);
+    return {
+      modelSelection: fallbackModelSelection,
+      info: fallbackInfo,
+    };
+  });
+
   const ensureSessionForThread = Effect.fn("ensureSessionForThread")(function* (
     threadId: ThreadId,
     createdAt: string,
@@ -341,40 +397,36 @@ const make = Effect.gen(function* () {
         detail: `Thread '${threadId}' has an active provider session without a provider instance id.`,
       });
     }
+    const resolvedDesiredModelSelection = yield* resolveConfiguredModelSelection(
+      threadId,
+      requestedModelSelection ?? thread.modelSelection,
+    );
+    const desiredModelSelection = resolvedDesiredModelSelection.modelSelection;
+    const desiredInstanceId = desiredModelSelection.instanceId;
     const currentInstanceId =
       activeThreadSession !== null &&
       activeSession !== undefined &&
       activeSession.providerInstanceId !== undefined
         ? activeSession.providerInstanceId
-        : thread.modelSelection.instanceId;
-    const desiredModelSelection = requestedModelSelection ?? thread.modelSelection;
-    const desiredInstanceId = desiredModelSelection.instanceId;
-    const currentInfo = yield* providerService.getInstanceInfo(currentInstanceId).pipe(
-      Effect.mapError(
-        () =>
-          new ProviderAdapterRequestError({
-            provider: providerErrorLabelFromInstanceHint({
-              instanceId: String(currentInstanceId),
-              modelSelectionInstanceId: String(thread.modelSelection.instanceId),
-              sessionProvider: thread.session?.providerName ?? undefined,
-            }),
-            method: "thread.turn.start",
-            detail: `Thread '${threadId}' references unknown provider instance '${currentInstanceId}'. The instance is not configured in this build.`,
-          }),
-      ),
-    );
-    const desiredInfo = yield* providerService.getInstanceInfo(desiredInstanceId).pipe(
-      Effect.mapError(
-        () =>
-          new ProviderAdapterRequestError({
-            provider: providerErrorLabelFromInstanceHint({
-              instanceId: String(desiredModelSelection.instanceId),
-            }),
-            method: "thread.turn.start",
-            detail: `Requested provider instance '${desiredInstanceId}' is not configured in this build.`,
-          }),
-      ),
-    );
+        : desiredInstanceId;
+    const currentInfo =
+      currentInstanceId === desiredInstanceId
+        ? resolvedDesiredModelSelection.info
+        : yield* providerService.getInstanceInfo(currentInstanceId).pipe(
+            Effect.mapError(
+              () =>
+                new ProviderAdapterRequestError({
+                  provider: providerErrorLabelFromInstanceHint({
+                    instanceId: String(currentInstanceId),
+                    modelSelectionInstanceId: String(thread.modelSelection.instanceId),
+                    sessionProvider: thread.session?.providerName ?? undefined,
+                  }),
+                  method: "thread.turn.start",
+                  detail: `Thread '${threadId}' references unknown provider instance '${currentInstanceId}'. The instance is not configured in this build.`,
+                }),
+            ),
+          );
+    const desiredInfo = resolvedDesiredModelSelection.info;
     const desiredDriverKind = desiredInfo.driverKind;
     if (!isProviderDriverKind(desiredDriverKind)) {
       return yield* new ProviderAdapterRequestError({
