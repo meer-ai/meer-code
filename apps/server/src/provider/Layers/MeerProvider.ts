@@ -94,7 +94,7 @@ function formatMeerProbeFailure(cause: unknown): {
 
 export const checkMeerProviderStatus = Effect.fn("checkMeerProviderStatus")(function* (
   meerSettings: MeerSettings,
-  _environment: NodeJS.ProcessEnv = process.env,
+  environment: NodeJS.ProcessEnv = process.env,
 ): Effect.fn.Return<ServerProviderDraft, never, ChildProcessSpawner.ChildProcessSpawner> {
   const checkedAt = yield* Effect.map(DateTime.now, DateTime.formatIso);
   const models = providerModelsFromSettings(
@@ -123,7 +123,10 @@ export const checkMeerProviderStatus = Effect.fn("checkMeerProviderStatus")(func
   const versionExit = yield* Effect.exit(
     spawnAndCollect(
       meerSettings.binaryPath,
-      ChildProcess.make(meerSettings.binaryPath, ["--version"]),
+      ChildProcess.make(meerSettings.binaryPath, ["--version"], {
+        env: environment,
+        shell: process.platform === "win32",
+      }),
     ),
   );
   if (versionExit._tag === "Failure") {
