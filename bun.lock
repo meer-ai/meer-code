@@ -17,7 +17,7 @@
     },
     "apps/desktop": {
       "name": "@t3tools/desktop",
-      "version": "0.0.28",
+      "version": "0.0.29-test.1",
       "dependencies": {
         "@effect/platform-node": "catalog:",
         "@t3tools/contracts": "workspace:*",
@@ -116,7 +116,7 @@
     },
     "apps/server": {
       "name": "meer-code",
-      "version": "0.0.28",
+      "version": "0.0.29-test.1",
       "bin": {
         "meer-code": "./dist/bin.mjs",
       },
@@ -147,7 +147,7 @@
     },
     "apps/web": {
       "name": "@t3tools/web",
-      "version": "0.0.28",
+      "version": "0.0.29-test.1",
       "dependencies": {
         "@base-ui/react": "^1.4.1",
         "@dnd-kit/core": "^6.3.1",
@@ -224,7 +224,7 @@
     },
     "packages/contracts": {
       "name": "@t3tools/contracts",
-      "version": "0.0.28",
+      "version": "0.0.29-test.1",
       "dependencies": {
         "effect": "catalog:",
       },
