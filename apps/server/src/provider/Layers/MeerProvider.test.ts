@@ -41,7 +41,9 @@ it.effect("passes the resolved environment to the Meer CLI health check", () =>
       ChildProcessSpawner.make((command) => {
         const cmd = command as unknown as {
           args: ReadonlyArray<string>;
-          options?: { readonly env?: NodeJS.ProcessEnv };
+          options?: {
+            readonly env?: NodeJS.ProcessEnv;
+          };
         };
         commands.push({ args: cmd.args, env: cmd.options?.env });
         return Effect.succeed(mockHandle({ stdout: "meer 1.2.3\n", stderr: "", code: 0 }));
@@ -58,7 +60,10 @@ it.effect("passes the resolved environment to the Meer CLI health check", () =>
     ).pipe(Effect.provide(spawnerLayer));
 
     assert.equal(snapshot.status, "ready");
-    assert.deepEqual(commands.map((command) => command.args), [["--version"]]);
+    assert.deepEqual(
+      commands.map((command) => command.args),
+      [["--version"]],
+    );
     assert.equal(commands[0]?.env?.MEER_CODE_TEST_SENTINEL, "probe-env");
     assert.equal(commands[0]?.env?.PATH, env.PATH);
   }),
