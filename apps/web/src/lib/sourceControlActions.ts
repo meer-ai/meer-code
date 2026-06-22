@@ -7,7 +7,7 @@ import {
   createVcsActionManager,
   getVcsActionTargetKey,
   vcsActionStateAtom,
-} from "@t3tools/client-runtime";
+} from "@meer-ai/client-runtime";
 import {
   type EnvironmentId,
   type GitActionProgressEvent,
@@ -19,7 +19,7 @@ import {
   type SourceControlRepositoryVisibility,
   type ThreadId,
   type VcsPullResult,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import {
   useCallback,
   useEffect,

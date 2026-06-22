@@ -4,8 +4,8 @@ import type {
   ProviderInstanceId,
   ServerSettings,
   UnifiedSettings,
-} from "@t3tools/contracts";
-import { DEFAULT_UNIFIED_SETTINGS } from "@t3tools/contracts/settings";
+} from "@meer-ai/contracts";
+import { DEFAULT_UNIFIED_SETTINGS } from "@meer-ai/contracts/settings";
 
 function collapseOtelSignalsUrl(input: {
   readonly tracesUrl: string;

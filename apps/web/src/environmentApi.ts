@@ -1,6 +1,6 @@
-import type { EnvironmentId, EnvironmentApi } from "@t3tools/contracts";
+import type { EnvironmentId, EnvironmentApi } from "@meer-ai/contracts";
 
-import type { WsRpcClient } from "@t3tools/client-runtime";
+import type { WsRpcClient } from "@meer-ai/client-runtime";
 import { readEnvironmentConnection } from "./environments/runtime";
 
 const environmentApiOverridesForTests = new Map<EnvironmentId, EnvironmentApi>();

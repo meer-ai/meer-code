@@ -21,9 +21,9 @@ import {
   DEFAULT_SERVER_SETTINGS,
   DEFAULT_TERMINAL_ID,
   ServerConfig as ServerConfigSchema,
-} from "@t3tools/contracts";
-import { scopedThreadKey, scopeThreadRef } from "@t3tools/client-runtime";
-import { createModelCapabilities, createModelSelection } from "@t3tools/shared/model";
+} from "@meer-ai/contracts";
+import { scopedThreadKey, scopeThreadRef } from "@meer-ai/client-runtime";
+import { createModelCapabilities, createModelSelection } from "@meer-ai/shared/model";
 import { RouterProvider, createMemoryHistory } from "@tanstack/react-router";
 import * as Option from "effect/Option";
 import * as Schema from "effect/Schema";
@@ -63,7 +63,7 @@ import { useUiStateStore } from "../uiStateStore";
 import { createAuthenticatedSessionHandlers } from "../../test/authHttpHandlers";
 import { BrowserWsRpcHarness, type NormalizedWsRpcRequestBody } from "../../test/wsRpcHarness";
 
-import { DEFAULT_CLIENT_SETTINGS } from "@t3tools/contracts/settings";
+import { DEFAULT_CLIENT_SETTINGS } from "@meer-ai/contracts/settings";
 
 vi.mock("../lib/vcsStatusState", () => {
   const status = {
@@ -195,10 +195,10 @@ function createBaseServerConfig(): ServerConfig {
       policy: "loopback-browser",
       bootstrapMethods: ["one-time-token"],
       sessionMethods: ["browser-session-cookie", "bearer-session-token"],
-      sessionCookieName: "t3_session",
+      sessionCookieName: "meer_session",
     },
     cwd: "/repo/project",
-    keybindingsConfigPath: "/repo/project/.t3code-keybindings.json",
+    keybindingsConfigPath: "/repo/project/keybindings.json",
     keybindings: [],
     issues: [],
     providers: [

@@ -9,8 +9,8 @@ import {
   type ServerConfigStreamEvent,
   type ServerLifecycleStreamEvent,
   type ServerProvider,
-} from "@t3tools/contracts";
-import { DEFAULT_RESOLVED_KEYBINDINGS } from "@t3tools/shared/keybindings";
+} from "@meer-ai/contracts";
+import { DEFAULT_RESOLVED_KEYBINDINGS } from "@meer-ai/shared/keybindings";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import {
@@ -77,7 +77,7 @@ const baseServerConfig: ServerConfig = {
     policy: "loopback-browser",
     bootstrapMethods: ["one-time-token"],
     sessionMethods: ["browser-session-cookie", "bearer-session-token"],
-    sessionCookieName: "t3_session",
+    sessionCookieName: "meer_session",
   },
   cwd: "/tmp/workspace",
   keybindingsConfigPath: "/tmp/workspace/.config/keybindings.json",

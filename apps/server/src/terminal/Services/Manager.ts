@@ -24,7 +24,7 @@ import {
   TerminalSessionLookupError,
   TerminalSessionStatus,
   TerminalWriteInput,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import type { PtyProcess } from "./PTY.ts";
 import * as Effect from "effect/Effect";
 import * as Context from "effect/Context";

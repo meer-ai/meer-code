@@ -24,7 +24,7 @@ import {
   ServerSettings,
   ServerSettingsError,
   type ServerSettingsPatch,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import * as Cache from "effect/Cache";
 import * as Deferred from "effect/Deferred";
 import * as Duration from "effect/Duration";
@@ -45,9 +45,9 @@ import * as Cause from "effect/Cause";
 import * as Semaphore from "effect/Semaphore";
 import { writeFileStringAtomically } from "./atomicWrite.ts";
 import { ServerConfig } from "./config.ts";
-import { type DeepPartial, deepMerge } from "@t3tools/shared/Struct";
-import { fromJsonStringPretty, fromLenientJson } from "@t3tools/shared/schemaJson";
-import { applyServerSettingsPatch } from "@t3tools/shared/serverSettings";
+import { type DeepPartial, deepMerge } from "@meer-ai/shared/Struct";
+import { fromJsonStringPretty, fromLenientJson } from "@meer-ai/shared/schemaJson";
+import { applyServerSettingsPatch } from "@meer-ai/shared/serverSettings";
 import { ServerSecretStoreLive } from "./auth/Layers/ServerSecretStore.ts";
 import { ServerSecretStore } from "./auth/Services/ServerSecretStore.ts";
 

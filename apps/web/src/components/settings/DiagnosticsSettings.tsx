@@ -12,7 +12,7 @@ import type {
   ServerProcessDiagnosticsEntry,
   ServerProcessResourceHistorySummary,
   ServerProcessSignal,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import * as DateTime from "effect/DateTime";
 import * as Option from "effect/Option";
 

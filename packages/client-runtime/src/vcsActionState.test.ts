@@ -7,7 +7,7 @@ import {
   type VcsPullResult,
   type VcsStatusResult,
   type VcsSwitchRefResult,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import { AtomRegistry } from "effect/unstable/reactivity";
 import { afterEach, describe, expect, it, vi } from "vitest";
 

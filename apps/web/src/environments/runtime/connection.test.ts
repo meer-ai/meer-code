@@ -1,8 +1,8 @@
-import { EnvironmentId } from "@t3tools/contracts";
+import { EnvironmentId } from "@meer-ai/contracts";
 import { describe, expect, it, vi } from "vitest";
 
 import { createEnvironmentConnection } from "./connection";
-import type { WsRpcClient } from "@t3tools/client-runtime";
+import type { WsRpcClient } from "@meer-ai/client-runtime";
 
 function createTestClient(config?: { readonly emitInitialSnapshot?: boolean }) {
   const lifecycleListeners = new Set<(event: any) => void>();

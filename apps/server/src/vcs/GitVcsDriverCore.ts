@@ -24,10 +24,10 @@ import {
   type ReviewDiffPreviewInput,
   type ReviewDiffPreviewSource,
   type VcsRef,
-} from "@t3tools/contracts";
-import { dedupeRemoteBranchesWithLocalMatches } from "@t3tools/shared/git";
-import { compactTraceAttributes } from "@t3tools/shared/observability";
-import { decodeJsonResult } from "@t3tools/shared/schemaJson";
+} from "@meer-ai/contracts";
+import { dedupeRemoteBranchesWithLocalMatches } from "@meer-ai/shared/git";
+import { compactTraceAttributes } from "@meer-ai/shared/observability";
+import { decodeJsonResult } from "@meer-ai/shared/schemaJson";
 import { gitCommandDuration, gitCommandsTotal, withMetrics } from "../observability/Metrics.ts";
 import * as GitVcsDriver from "./GitVcsDriver.ts";
 import {

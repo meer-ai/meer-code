@@ -11,7 +11,7 @@ import {
   type UserInputQuestion,
   type ThreadId,
   type TurnId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 
 import type {
   ChatMessage,
@@ -30,22 +30,7 @@ export const PROVIDER_OPTIONS: Array<{
   available: boolean;
   /** Shown on the model picker sidebar when relevant */
   pickerSidebarBadge?: "new" | "soon";
-}> = [
-  { value: ProviderDriverKind.make("codex"), label: "Codex", available: true },
-  { value: ProviderDriverKind.make("claudeAgent"), label: "Claude", available: true },
-  {
-    value: ProviderDriverKind.make("opencode"),
-    label: "OpenCode",
-    available: true,
-    pickerSidebarBadge: "new",
-  },
-  {
-    value: ProviderDriverKind.make("cursor"),
-    label: "Cursor",
-    available: true,
-    pickerSidebarBadge: "new",
-  },
-];
+}> = [{ value: ProviderDriverKind.make("meer"), label: "Meer", available: true }];
 
 export interface WorkLogEntry {
   id: string;

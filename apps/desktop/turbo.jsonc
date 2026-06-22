@@ -11,12 +11,12 @@
       "persistent": true,
     },
     "start": {
-      "dependsOn": ["build", "@t3tools/web#build", "meer-code#build"],
+      "dependsOn": ["build", "@meer-ai/web#build", "meer-code#build"],
       "cache": false,
       "persistent": true,
     },
     "smoke-test": {
-      "dependsOn": ["build", "@t3tools/web#build", "meer-code#build"],
+      "dependsOn": ["build", "@meer-ai/web#build", "meer-code#build"],
       "cache": false,
       "outputs": [],
     },

@@ -26,7 +26,7 @@ import {
   type VcsStatusLocalResult,
   type VcsStatusRemoteResult,
   type VcsStatusResult,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 
 import { GitManager, type GitRunStackedActionOptions } from "./GitManager.ts";
 import { GitVcsDriver } from "../vcs/GitVcsDriver.ts";

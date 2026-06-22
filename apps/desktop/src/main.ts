@@ -8,10 +8,10 @@ import * as Option from "effect/Option";
 
 import * as Electron from "electron";
 
-import { applyLegacyT3CodeEnvAliases } from "@t3tools/shared/env";
-import * as NetService from "@t3tools/shared/Net";
-import { resolveRemoteT3CliPackageSpec } from "@t3tools/ssh/command";
-import type { RemoteT3RunnerOptions } from "@t3tools/ssh/tunnel";
+import { applyLegacyT3CodeEnvAliases } from "@meer-ai/shared/env";
+import * as NetService from "@meer-ai/shared/Net";
+import { resolveRemoteT3CliPackageSpec } from "@meer-ai/ssh/command";
+import type { RemoteT3RunnerOptions } from "@meer-ai/ssh/tunnel";
 import serverPackageJson from "../../server/package.json" with { type: "json" };
 
 import type { DesktopSettings as DesktopSettingsValue } from "./settings/DesktopAppSettings.ts";

@@ -5,8 +5,8 @@ import {
   createSourceControlDiscoveryManager,
   getSourceControlDiscoveryTargetKey,
   sourceControlDiscoveryStateAtom,
-} from "@t3tools/client-runtime";
-import { EnvironmentId, type SourceControlDiscoveryResult } from "@t3tools/contracts";
+} from "@meer-ai/client-runtime";
+import { EnvironmentId, type SourceControlDiscoveryResult } from "@meer-ai/contracts";
 import { useEffect } from "react";
 
 import { readPrimaryEnvironmentDescriptor } from "../environments/primary";

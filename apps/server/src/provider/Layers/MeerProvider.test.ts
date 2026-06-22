@@ -8,7 +8,7 @@ import * as Sink from "effect/Sink";
 import * as Stream from "effect/Stream";
 import { ChildProcessSpawner } from "effect/unstable/process";
 
-import { MeerSettings } from "@t3tools/contracts";
+import { MeerSettings } from "@meer-ai/contracts";
 import { checkMeerProviderStatus } from "./MeerProvider.ts";
 
 const decodeMeerSettings = Schema.decodeSync(MeerSettings);

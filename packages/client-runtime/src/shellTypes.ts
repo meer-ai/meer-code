@@ -4,7 +4,7 @@ import type {
   OrchestrationShellSnapshot,
   OrchestrationThreadShell,
   ThreadId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 
 export interface EnvironmentScopedProjectShell extends OrchestrationProjectShell {
   readonly environmentId: EnvironmentId;

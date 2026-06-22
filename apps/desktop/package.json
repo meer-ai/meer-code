@@ -1,5 +1,5 @@
 {
-  "name": "@t3tools/desktop",
+  "name": "@meer-ai/desktop",
   "version": "0.0.29",
   "private": true,
   "type": "module",
@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@effect/platform-node": "catalog:",
-    "@t3tools/contracts": "workspace:*",
-    "@t3tools/shared": "workspace:*",
-    "@t3tools/ssh": "workspace:*",
-    "@t3tools/tailscale": "workspace:*",
+    "@meer-ai/contracts": "workspace:*",
+    "@meer-ai/shared": "workspace:*",
+    "@meer-ai/ssh": "workspace:*",
+    "@meer-ai/tailscale": "workspace:*",
     "effect": "catalog:",
     "electron": "41.5.0",
     "electron-updater": "^6.6.2"

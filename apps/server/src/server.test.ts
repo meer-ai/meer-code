@@ -24,7 +24,7 @@ import {
   WS_METHODS,
   WsRpcGroup,
   EditorId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import { assert, it } from "@effect/vitest";
 import { assertFailure, assertInclude, assertTrue } from "@effect/vitest/utils";
 import * as Clock from "effect/Clock";
@@ -1067,7 +1067,7 @@ it.layer(NodeServices.layer)("server router seam", (it) => {
         "browser-session-cookie",
         "bearer-session-token",
       ]);
-      assert.isTrue(body.auth.sessionCookieName.startsWith("t3_session_"));
+      assert.isTrue(body.auth.sessionCookieName.startsWith("meer_session_"));
     }).pipe(Effect.provide(NodeHttpServer.layerTest)),
   );
 

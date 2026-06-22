@@ -43,7 +43,7 @@ export interface DesktopIpcShape {
 }
 
 export class DesktopIpc extends Context.Service<DesktopIpc, DesktopIpcShape>()(
-  "@t3tools/desktop/ipc/DesktopIpc",
+  "@meer-ai/desktop/ipc/DesktopIpc",
 ) {}
 
 export const make = (ipcMain: DesktopIpcMain): DesktopIpcShape =>

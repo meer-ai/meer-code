@@ -1,1 +1,1 @@
-export * from "@t3tools/shared/advertisedEndpoint";
+export * from "@meer-ai/shared/advertisedEndpoint";

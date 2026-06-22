@@ -4,7 +4,7 @@ import * as NodeOS from "node:os";
 
 import * as NodeRuntime from "@effect/platform-node/NodeRuntime";
 import * as NodeServices from "@effect/platform-node/NodeServices";
-import * as NetService from "@t3tools/shared/Net";
+import * as NetService from "@meer-ai/shared/Net";
 import * as Config from "effect/Config";
 import * as Data from "effect/Data";
 import * as Effect from "effect/Effect";
@@ -17,7 +17,7 @@ import * as Schema from "effect/Schema";
 import { Argument, Command, Flag } from "effect/unstable/cli";
 import { ChildProcess } from "effect/unstable/process";
 
-import { applyLegacyT3CodeEnvAliases } from "@t3tools/shared/env";
+import { applyLegacyT3CodeEnvAliases } from "@meer-ai/shared/env";
 
 applyLegacyT3CodeEnvAliases();
 
@@ -37,14 +37,14 @@ const MODE_ARGS = {
     "run",
     "dev",
     "--ui=tui",
-    "--filter=@t3tools/contracts",
-    "--filter=@t3tools/web",
+    "--filter=@meer-ai/contracts",
+    "--filter=@meer-ai/web",
     "--filter=meer-code",
     "--parallel",
   ],
   "dev:server": ["run", "dev", "--filter=meer-code"],
-  "dev:web": ["run", "dev", "--filter=@t3tools/web"],
-  "dev:desktop": ["run", "dev", "--filter=@t3tools/desktop", "--filter=@t3tools/web", "--parallel"],
+  "dev:web": ["run", "dev", "--filter=@meer-ai/web"],
+  "dev:desktop": ["run", "dev", "--filter=@meer-ai/desktop", "--filter=@meer-ai/web", "--parallel"],
 } as const satisfies Record<string, ReadonlyArray<string>>;
 
 type DevMode = keyof typeof MODE_ARGS;

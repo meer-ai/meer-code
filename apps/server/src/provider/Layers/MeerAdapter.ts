@@ -14,7 +14,7 @@ import {
   type ProviderTurnStartResult,
   type ProviderUserInputAnswers,
   type ThreadId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import { randomUUID } from "node:crypto";
 import * as DateTime from "effect/DateTime";
 import * as Effect from "effect/Effect";

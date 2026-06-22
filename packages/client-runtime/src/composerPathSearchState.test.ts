@@ -1,5 +1,5 @@
 import { assert, beforeEach, it, vi } from "vitest";
-import type { EnvironmentId } from "@t3tools/contracts";
+import type { EnvironmentId } from "@meer-ai/contracts";
 import { AtomRegistry } from "effect/unstable/reactivity";
 
 import {

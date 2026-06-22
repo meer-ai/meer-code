@@ -27,7 +27,7 @@ export interface DesktopAppIdentityShape {
 export class DesktopAppIdentity extends Context.Service<
   DesktopAppIdentity,
   DesktopAppIdentityShape
->()("@t3tools/desktop/app/DesktopAppIdentity") {}
+>()("@meer-ai/desktop/app/DesktopAppIdentity") {}
 
 const normalizeCommitHash = (value: string): Option.Option<string> => {
   const trimmed = value.trim();

@@ -1,4 +1,4 @@
-import type { VcsStatusResult } from "@t3tools/contracts";
+import type { VcsStatusResult } from "@meer-ai/contracts";
 import { assert, describe, it } from "vitest";
 import {
   buildGitActionProgressStages,

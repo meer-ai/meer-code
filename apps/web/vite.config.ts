@@ -3,7 +3,7 @@ import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import { defineConfig } from "vite";
-import { applyLegacyT3CodeEnvAliases } from "@t3tools/shared/env";
+import { applyLegacyT3CodeEnvAliases } from "@meer-ai/shared/env";
 import pkg from "./package.json" with { type: "json" };
 
 applyLegacyT3CodeEnvAliases();

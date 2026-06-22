@@ -8,8 +8,8 @@ import {
   type VcsStatusResult,
   type VcsStatusStreamEvent,
   WS_METHODS,
-} from "@t3tools/contracts";
-import { applyGitStatusStreamEvent } from "@t3tools/shared/git";
+} from "@meer-ai/contracts";
+import { applyGitStatusStreamEvent } from "@meer-ai/shared/git";
 import type * as Effect from "effect/Effect";
 import type * as Stream from "effect/Stream";
 

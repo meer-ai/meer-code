@@ -1,5 +1,5 @@
-import { parseScopedThreadKey, scopeProjectRef, scopeThreadRef } from "@t3tools/client-runtime";
-import { type ScopedThreadRef, ThreadId } from "@t3tools/contracts";
+import { parseScopedThreadKey, scopeProjectRef, scopeThreadRef } from "@meer-ai/client-runtime";
+import { type ScopedThreadRef, ThreadId } from "@meer-ai/contracts";
 import { useRouter } from "@tanstack/react-router";
 import { useCallback, useRef } from "react";
 

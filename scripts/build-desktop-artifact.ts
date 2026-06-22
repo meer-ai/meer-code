@@ -7,7 +7,7 @@ import serverPackageJson from "../apps/server/package.json" with { type: "json" 
 import { BRAND_ASSET_PATHS } from "./lib/brand-assets.ts";
 import { getDefaultBuildArch } from "./lib/build-target-arch.ts";
 import { resolveCatalogDependencies } from "./lib/resolve-catalog.ts";
-import { applyLegacyT3CodeEnvAliases } from "@t3tools/shared/env";
+import { applyLegacyT3CodeEnvAliases } from "@meer-ai/shared/env";
 
 import * as NodeRuntime from "@effect/platform-node/NodeRuntime";
 import * as NodeServices from "@effect/platform-node/NodeServices";

@@ -3,7 +3,7 @@ import type {
   DesktopAppStageLabel,
   DesktopRuntimeArch,
   DesktopRuntimeInfo,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import * as Config from "effect/Config";
 import * as Context from "effect/Context";
 import * as Effect from "effect/Effect";
@@ -78,7 +78,7 @@ export interface DesktopEnvironmentShape {
 export class DesktopEnvironment extends Context.Service<
   DesktopEnvironment,
   DesktopEnvironmentShape
->()("@t3tools/desktop/app/DesktopEnvironment") {}
+>()("@meer-ai/desktop/app/DesktopEnvironment") {}
 
 const APP_BASE_NAME = "Meer Code";
 

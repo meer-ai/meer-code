@@ -1,6 +1,6 @@
-import type { DesktopSshPasswordPromptRequest } from "@t3tools/contracts";
-import { DesktopSshPasswordPromptResolutionInputSchema } from "@t3tools/contracts";
-import type { SshPasswordRequest } from "@t3tools/ssh/auth";
+import type { DesktopSshPasswordPromptRequest } from "@meer-ai/contracts";
+import { DesktopSshPasswordPromptResolutionInputSchema } from "@meer-ai/contracts";
+import type { SshPasswordRequest } from "@meer-ai/ssh/auth";
 import * as Context from "effect/Context";
 import * as Crypto from "effect/Crypto";
 import * as Data from "effect/Data";
@@ -129,7 +129,7 @@ export interface DesktopSshPasswordPromptsShape {
 export class DesktopSshPasswordPrompts extends Context.Service<
   DesktopSshPasswordPrompts,
   DesktopSshPasswordPromptsShape
->()("@t3tools/desktop/ssh/DesktopSshPasswordPrompts") {}
+>()("@meer-ai/desktop/ssh/DesktopSshPasswordPrompts") {}
 
 interface PendingSshPasswordPrompt {
   readonly requestId: string;

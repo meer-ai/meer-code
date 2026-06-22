@@ -8,8 +8,8 @@ import {
   createVcsStatusManager,
   getVcsStatusTargetKey,
   vcsStatusStateAtom,
-} from "@t3tools/client-runtime";
-import type { EnvironmentId } from "@t3tools/contracts";
+} from "@meer-ai/client-runtime";
+import type { EnvironmentId } from "@meer-ai/contracts";
 import { useEffect } from "react";
 
 import {

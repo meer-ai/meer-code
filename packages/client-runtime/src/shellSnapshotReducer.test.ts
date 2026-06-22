@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { ProjectId, ProviderInstanceId, ThreadId } from "@t3tools/contracts";
-import type { OrchestrationShellSnapshot, OrchestrationShellStreamEvent } from "@t3tools/contracts";
+import { ProjectId, ProviderInstanceId, ThreadId } from "@meer-ai/contracts";
+import type { OrchestrationShellSnapshot, OrchestrationShellStreamEvent } from "@meer-ai/contracts";
 
 import { applyShellStreamEvent } from "./shellSnapshotReducer.ts";
 

@@ -39,7 +39,7 @@ export interface SshPasswordPromptShape {
 }
 
 export class SshPasswordPrompt extends Context.Service<SshPasswordPrompt, SshPasswordPromptShape>()(
-  "@t3tools/ssh/auth/SshPasswordPrompt",
+  "@meer-ai/ssh/auth/SshPasswordPrompt",
 ) {
   static readonly disabledLayer = Layer.succeed(
     SshPasswordPrompt,

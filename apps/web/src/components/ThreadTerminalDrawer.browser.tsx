@@ -1,7 +1,7 @@
 import "../index.css";
 
-import { scopeThreadRef } from "@t3tools/client-runtime";
-import { ThreadId, type TerminalAttachStreamEvent } from "@t3tools/contracts";
+import { scopeThreadRef } from "@meer-ai/client-runtime";
+import { ThreadId, type TerminalAttachStreamEvent } from "@meer-ai/contracts";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
 

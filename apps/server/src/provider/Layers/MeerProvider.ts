@@ -1,5 +1,5 @@
-import { ProviderDriverKind, type MeerSettings, type ModelCapabilities } from "@t3tools/contracts";
-import { createModelCapabilities } from "@t3tools/shared/model";
+import { ProviderDriverKind, type MeerSettings, type ModelCapabilities } from "@meer-ai/contracts";
+import { createModelCapabilities } from "@meer-ai/shared/model";
 import * as Cause from "effect/Cause";
 import * as DateTime from "effect/DateTime";
 import * as Effect from "effect/Effect";

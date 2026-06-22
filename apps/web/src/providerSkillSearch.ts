@@ -1,9 +1,9 @@
-import type { ServerProviderSkill } from "@t3tools/contracts";
+import type { ServerProviderSkill } from "@meer-ai/contracts";
 import {
   insertRankedSearchResult,
   normalizeSearchQuery,
   scoreQueryMatch,
-} from "@t3tools/shared/searchRanking";
+} from "@meer-ai/shared/searchRanking";
 
 import { formatProviderSkillDisplayName } from "./providerSkillPresentation";
 

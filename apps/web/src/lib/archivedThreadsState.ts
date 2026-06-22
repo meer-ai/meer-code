@@ -4,8 +4,8 @@ import {
   createArchivedThreadsManager,
   makeArchivedThreadsEnvironmentKey,
   readArchivedThreadsSnapshotState,
-} from "@t3tools/client-runtime";
-import type { EnvironmentId } from "@t3tools/contracts";
+} from "@meer-ai/client-runtime";
+import type { EnvironmentId } from "@meer-ai/contracts";
 import { useCallback, useMemo } from "react";
 
 import { readEnvironmentApi } from "../environmentApi";

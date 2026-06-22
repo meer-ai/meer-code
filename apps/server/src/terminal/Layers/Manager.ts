@@ -8,9 +8,9 @@ import {
   type TerminalSessionSnapshot,
   type TerminalSessionStatus,
   type TerminalSummary,
-} from "@t3tools/contracts";
-import { makeKeyedCoalescingWorker } from "@t3tools/shared/KeyedCoalescingWorker";
-import { getTerminalLabel } from "@t3tools/shared/terminalLabels";
+} from "@meer-ai/contracts";
+import { makeKeyedCoalescingWorker } from "@meer-ai/shared/KeyedCoalescingWorker";
+import { getTerminalLabel } from "@meer-ai/shared/terminalLabels";
 import * as DateTime from "effect/DateTime";
 import * as Effect from "effect/Effect";
 import * as Encoding from "effect/Encoding";

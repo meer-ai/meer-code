@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { ProviderDriverKind } from "@t3tools/contracts";
+import { ProviderDriverKind } from "@meer-ai/contracts";
 
 import {
   createThreadJumpHintVisibilityController,
@@ -27,7 +27,7 @@ import {
   ProjectId,
   ProviderInstanceId,
   ThreadId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import {
   DEFAULT_INTERACTION_MODE,
   DEFAULT_RUNTIME_MODE,

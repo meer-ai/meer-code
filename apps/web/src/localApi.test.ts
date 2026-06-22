@@ -13,10 +13,10 @@ import {
   type TerminalAttachStreamEvent,
   type TerminalMetadataStreamEvent,
   ThreadId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { ContextMenuItem } from "@t3tools/contracts";
+import type { ContextMenuItem } from "@meer-ai/contracts";
 
 const showContextMenuFallbackMock =
   vi.fn<
@@ -290,7 +290,7 @@ const baseServerConfig: ServerConfig = {
     policy: "loopback-browser",
     bootstrapMethods: ["one-time-token"],
     sessionMethods: ["browser-session-cookie", "bearer-session-token"],
-    sessionCookieName: "t3_session",
+    sessionCookieName: "meer_session",
   },
   cwd: "/tmp/workspace",
   keybindingsConfigPath: "/tmp/workspace/.config/keybindings.json",

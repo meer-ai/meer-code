@@ -3,8 +3,8 @@ import type {
   AuthSessionState,
   AuthWebSocketTokenResult,
   ExecutionEnvironmentDescriptor,
-} from "@t3tools/contracts";
-import { decodeJsonResult } from "@t3tools/shared/schemaJson";
+} from "@meer-ai/contracts";
+import { decodeJsonResult } from "@meer-ai/shared/schemaJson";
 import * as Data from "effect/Data";
 import * as Duration from "effect/Duration";
 import * as Effect from "effect/Effect";

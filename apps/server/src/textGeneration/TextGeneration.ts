@@ -1,8 +1,8 @@
 import * as Context from "effect/Context";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
-import type { ChatAttachment, ModelSelection, ProviderInstanceId } from "@t3tools/contracts";
-import { TextGenerationError } from "@t3tools/contracts";
+import type { ChatAttachment, ModelSelection, ProviderInstanceId } from "@meer-ai/contracts";
+import { TextGenerationError } from "@meer-ai/contracts";
 
 import {
   ProviderInstanceRegistry,
@@ -10,7 +10,7 @@ import {
 } from "../provider/Services/ProviderInstanceRegistry.ts";
 import type { ProviderInstance } from "../provider/ProviderDriver.ts";
 
-export type TextGenerationProvider = "codex" | "claudeAgent" | "cursor" | "opencode" | "meer";
+export type TextGenerationProvider = "meer";
 
 export interface CommitMessageGenerationInput {
   cwd: string;

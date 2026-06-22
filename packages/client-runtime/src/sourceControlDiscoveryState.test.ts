@@ -1,5 +1,5 @@
 import { assert, beforeEach, it } from "vitest";
-import type { SourceControlDiscoveryResult } from "@t3tools/contracts";
+import type { SourceControlDiscoveryResult } from "@meer-ai/contracts";
 import * as Option from "effect/Option";
 import { AtomRegistry } from "effect/unstable/reactivity";
 

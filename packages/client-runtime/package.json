@@ -1,5 +1,5 @@
 {
-  "name": "@t3tools/client-runtime",
+  "name": "@meer-ai/client-runtime",
   "private": true,
   "type": "module",
   "main": "./src/index.ts",
@@ -18,8 +18,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@t3tools/contracts": "workspace:*",
-    "@t3tools/shared": "workspace:*",
+    "@meer-ai/contracts": "workspace:*",
+    "@meer-ai/shared": "workspace:*",
     "effect": "catalog:"
   },
   "devDependencies": {

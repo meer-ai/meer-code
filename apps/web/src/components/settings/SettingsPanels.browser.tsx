@@ -16,7 +16,7 @@ import {
   type ServerProcessResourceHistoryResult,
   type ServerProvider,
   type SourceControlDiscoveryResult,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import * as DateTime from "effect/DateTime";
 import * as Option from "effect/Option";
 import { page } from "vitest/browser";
@@ -218,10 +218,10 @@ function createBaseServerConfig(): ServerConfig {
       policy: "loopback-browser",
       bootstrapMethods: ["one-time-token"],
       sessionMethods: ["browser-session-cookie", "bearer-session-token"],
-      sessionCookieName: "t3_session",
+      sessionCookieName: "meer_session",
     },
     cwd: "/repo/project",
-    keybindingsConfigPath: "/repo/project/.t3code-keybindings.json",
+    keybindingsConfigPath: "/repo/project/keybindings.json",
     keybindings: [],
     issues: [],
     providers: [],
@@ -406,7 +406,7 @@ const createDesktopBridgeStub = (overrides?: {
         policy: "remote-reachable",
         bootstrapMethods: ["one-time-token"],
         sessionMethods: ["browser-session-cookie", "bearer-session-token"],
-        sessionCookieName: "t3_session",
+        sessionCookieName: "meer_session",
       },
       role: "owner",
       sessionMethod: "bearer-session-token",

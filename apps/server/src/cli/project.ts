@@ -3,7 +3,7 @@ import {
   OrchestrationReadModel,
   ProjectId,
   type ClientOrchestrationCommand,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import * as Console from "effect/Console";
 import * as Crypto from "effect/Crypto";
 import * as Data from "effect/Data";

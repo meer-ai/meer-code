@@ -11,8 +11,8 @@ import {
   ExternalLauncherError,
   type EditorId,
   type LaunchEditorInput,
-} from "@t3tools/contracts";
-import { isCommandAvailable, type CommandAvailabilityOptions } from "@t3tools/shared/shell";
+} from "@meer-ai/contracts";
+import { isCommandAvailable, type CommandAvailabilityOptions } from "@meer-ai/shared/shell";
 import * as Context from "effect/Context";
 import * as Effect from "effect/Effect";
 import * as Encoding from "effect/Encoding";
@@ -26,7 +26,7 @@ import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process";
 
 export { ExternalLauncherError };
 export type { LaunchEditorInput };
-export { isCommandAvailable } from "@t3tools/shared/shell";
+export { isCommandAvailable } from "@meer-ai/shared/shell";
 
 interface EditorLaunch {
   readonly command: string;

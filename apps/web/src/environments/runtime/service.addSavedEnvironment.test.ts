@@ -1,4 +1,4 @@
-import { EnvironmentId } from "@t3tools/contracts";
+import { EnvironmentId } from "@meer-ai/contracts";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 let mockSavedRecords: Array<Record<string, unknown>> = [];
@@ -57,8 +57,8 @@ const mockClientGetConfig = vi.fn(async () => ({
   },
 }));
 
-vi.mock("@t3tools/shared/remote", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@t3tools/shared/remote")>()),
+vi.mock("@meer-ai/shared/remote", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@meer-ai/shared/remote")>()),
   resolveRemotePairingTarget: mockResolveRemotePairingTarget,
 }));
 
@@ -110,8 +110,8 @@ vi.mock("./connection", async (importOriginal) => ({
   createEnvironmentConnection: mockCreateEnvironmentConnection,
 }));
 
-vi.mock("@t3tools/client-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@t3tools/client-runtime")>();
+vi.mock("@meer-ai/client-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@meer-ai/client-runtime")>();
   return {
     ...actual,
     bootstrapRemoteBearerSession: mockBootstrapRemoteBearerSession,

@@ -16,8 +16,8 @@ import {
   type DesktopSshEnvironmentTarget,
   type DesktopServerExposureState,
   type EnvironmentId,
-} from "@t3tools/contracts";
-import { WsRpcClient } from "@t3tools/client-runtime";
+} from "@meer-ai/contracts";
+import { WsRpcClient } from "@meer-ai/client-runtime";
 import * as DateTime from "effect/DateTime";
 
 import { useCopyToClipboard } from "../../hooks/useCopyToClipboard";

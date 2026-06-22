@@ -1,4 +1,4 @@
-import type { VcsStatusRemoteResult, VcsStatusResult } from "@t3tools/contracts";
+import type { VcsStatusRemoteResult, VcsStatusResult } from "@meer-ai/contracts";
 import { describe, expect, it } from "vitest";
 
 import {

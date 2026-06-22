@@ -1,5 +1,5 @@
 import { AtomRegistry } from "effect/unstable/reactivity";
-import { EnvironmentId } from "@t3tools/contracts";
+import { EnvironmentId } from "@meer-ai/contracts";
 import { afterEach, describe, expect, it } from "vitest";
 
 import { createEnvironmentRuntimeManager } from "./environmentRuntimeState.ts";

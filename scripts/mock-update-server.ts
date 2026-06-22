@@ -10,7 +10,7 @@ import * as FileSystem from "effect/FileSystem";
 import * as Layer from "effect/Layer";
 import * as Path from "effect/Path";
 import { HttpRouter, HttpServerRequest, HttpServerResponse } from "effect/unstable/http";
-import { applyLegacyT3CodeEnvAliases } from "@t3tools/shared/env";
+import { applyLegacyT3CodeEnvAliases } from "@meer-ai/shared/env";
 
 applyLegacyT3CodeEnvAliases();
 

@@ -8,8 +8,8 @@ import {
   ProviderInstanceId,
   ThreadId,
   TurnId,
-} from "@t3tools/contracts";
-import type { OrchestrationThread } from "@t3tools/contracts";
+} from "@meer-ai/contracts";
+import type { OrchestrationThread } from "@meer-ai/contracts";
 
 import { applyThreadDetailEvent } from "./threadDetailReducer.ts";
 

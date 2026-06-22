@@ -1,4 +1,4 @@
-import { MeerSettings, ProviderDriverKind, type ServerProvider } from "@t3tools/contracts";
+import { MeerSettings, ProviderDriverKind, type ServerProvider } from "@meer-ai/contracts";
 import * as Duration from "effect/Duration";
 import * as Effect from "effect/Effect";
 import * as FileSystem from "effect/FileSystem";

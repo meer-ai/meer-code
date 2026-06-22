@@ -1,4 +1,4 @@
-import type { RepositoryIdentity } from "@t3tools/contracts";
+import type { RepositoryIdentity } from "@meer-ai/contracts";
 import * as Context from "effect/Context";
 import type * as Effect from "effect/Effect";
 

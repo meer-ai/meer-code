@@ -1,5 +1,5 @@
-import { scopeThreadRef, scopedThreadKey } from "@t3tools/client-runtime";
-import { ThreadId } from "@t3tools/contracts";
+import { scopeThreadRef, scopedThreadKey } from "@meer-ai/client-runtime";
+import { ThreadId } from "@meer-ai/contracts";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import {

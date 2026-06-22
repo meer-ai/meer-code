@@ -6,8 +6,8 @@ import {
   type TerminalAttachStreamEvent,
   type TerminalSessionSnapshot,
   type ThreadId,
-} from "@t3tools/contracts";
-import { getTerminalLabel } from "@t3tools/shared/terminalLabels";
+} from "@meer-ai/contracts";
+import { getTerminalLabel } from "@meer-ai/shared/terminalLabels";
 import { Terminal, type ITheme } from "@xterm/xterm";
 import {
   type PointerEvent as ReactPointerEvent,

@@ -10,7 +10,7 @@ import type {
   OrchestrationThread,
   OrchestrationThreadActivity,
   TurnId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 
 /**
  * Retention limits for collections within a thread.

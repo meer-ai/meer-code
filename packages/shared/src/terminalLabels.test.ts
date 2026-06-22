@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import type { TerminalSummary } from "@t3tools/contracts";
-import { DEFAULT_TERMINAL_ID } from "@t3tools/contracts";
+import type { TerminalSummary } from "@meer-ai/contracts";
+import { DEFAULT_TERMINAL_ID } from "@meer-ai/contracts";
 
 import { getTerminalLabel, nextTerminalId, resolveTerminalSessionLabel } from "./terminalLabels.ts";
 

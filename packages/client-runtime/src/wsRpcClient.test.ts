@@ -2,8 +2,8 @@ import type {
   VcsStatusLocalResult,
   VcsStatusRemoteResult,
   VcsStatusStreamEvent,
-} from "@t3tools/contracts";
-import { ORCHESTRATION_WS_METHODS, ThreadId, WS_METHODS } from "@t3tools/contracts";
+} from "@meer-ai/contracts";
+import { ORCHESTRATION_WS_METHODS, ThreadId, WS_METHODS } from "@meer-ai/contracts";
 import { describe, expect, it, vi } from "vitest";
 
 vi.mock("./wsTransport.ts", () => ({

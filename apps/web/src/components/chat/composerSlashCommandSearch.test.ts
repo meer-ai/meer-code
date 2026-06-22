@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ProviderDriverKind } from "@t3tools/contracts";
+import { ProviderDriverKind } from "@meer-ai/contracts";
 
 import type { ComposerCommandItem } from "./ComposerCommandMenu";
 import { searchSlashCommandItems } from "./composerSlashCommandSearch";

@@ -28,28 +28,28 @@ import {
   type VcsStatusRemoteResult,
   VcsStatusResult,
   ModelSelection,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import {
   detectSourceControlProviderFromGitRemoteUrl,
   mergeGitStatusParts,
   resolveAutoFeatureBranchName,
   sanitizeBranchFragment,
   sanitizeFeatureBranchName,
-} from "@t3tools/shared/git";
+} from "@meer-ai/shared/git";
 import {
   getChangeRequestTerminologyForKind,
   type ChangeRequestTerminology,
-} from "@t3tools/shared/sourceControl";
+} from "@meer-ai/shared/sourceControl";
 
-import { GitManagerError } from "@t3tools/contracts";
+import { GitManagerError } from "@meer-ai/contracts";
 import { TextGeneration } from "../textGeneration/TextGeneration.ts";
 import { ProjectSetupScriptRunner } from "../project/Services/ProjectSetupScriptRunner.ts";
 import { extractBranchNameFromRemoteRef } from "./remoteRefs.ts";
 import { ServerSettingsService } from "../serverSettings.ts";
-import type { GitManagerServiceError } from "@t3tools/contracts";
+import type { GitManagerServiceError } from "@meer-ai/contracts";
 import { GitVcsDriver, type GitStatusDetails } from "../vcs/GitVcsDriver.ts";
 import { SourceControlProviderRegistry } from "../sourceControl/SourceControlProviderRegistry.ts";
-import type { ChangeRequest } from "@t3tools/contracts";
+import type { ChangeRequest } from "@meer-ai/contracts";
 
 export interface GitActionProgressReporter {
   readonly publish: (event: GitActionProgressEvent) => Effect.Effect<void, never>;

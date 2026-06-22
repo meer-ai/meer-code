@@ -7,9 +7,9 @@ import {
   type AuthWebSocketTokenResult as AuthWebSocketTokenResultType,
   ExecutionEnvironmentDescriptor,
   type ExecutionEnvironmentDescriptor as ExecutionEnvironmentDescriptorType,
-} from "@t3tools/contracts";
-import { SshHttpBridgeError } from "@t3tools/ssh/errors";
-import { fetchLoopbackSshJson } from "@t3tools/ssh/tunnel";
+} from "@meer-ai/contracts";
+import { SshHttpBridgeError } from "@meer-ai/ssh/errors";
+import { fetchLoopbackSshJson } from "@meer-ai/ssh/tunnel";
 import * as Context from "effect/Context";
 import * as Data from "effect/Data";
 import * as Effect from "effect/Effect";
@@ -53,7 +53,7 @@ export interface DesktopSshRemoteApiShape {
 export class DesktopSshRemoteApi extends Context.Service<
   DesktopSshRemoteApi,
   DesktopSshRemoteApiShape
->()("@t3tools/desktop/ssh/DesktopSshRemoteApi") {}
+>()("@meer-ai/desktop/ssh/DesktopSshRemoteApi") {}
 
 const decodeExecutionEnvironmentDescriptor = Schema.decodeUnknownEffect(
   ExecutionEnvironmentDescriptor,

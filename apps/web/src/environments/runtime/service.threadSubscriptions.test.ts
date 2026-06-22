@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import type { WsRpcClient } from "@t3tools/client-runtime";
+import type { WsRpcClient } from "@meer-ai/client-runtime";
 import {
   EnvironmentId,
   ProjectId,
@@ -7,7 +7,7 @@ import {
   ThreadId,
   TurnId,
   type OrchestrationShellSnapshot,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockSubscribeThread = vi.fn();
@@ -72,8 +72,8 @@ vi.mock("./connection", async (importOriginal) => ({
   createEnvironmentConnection: mockCreateEnvironmentConnection,
 }));
 
-vi.mock("@t3tools/client-runtime", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@t3tools/client-runtime")>();
+vi.mock("@meer-ai/client-runtime", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@meer-ai/client-runtime")>();
   const stubWsClient: WsRpcClient = {
     dispose: async () => undefined,
     reconnect: async () => undefined,

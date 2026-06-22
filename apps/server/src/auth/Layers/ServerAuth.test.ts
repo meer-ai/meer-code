@@ -35,7 +35,7 @@ const makeCookieRequest = (
 ): Parameters<ServerAuthShape["authenticateHttpRequest"]>[0] =>
   ({
     cookies: {
-      t3_session: sessionToken,
+      meer_session: sessionToken,
     },
     headers: {},
   }) as unknown as Parameters<ServerAuthShape["authenticateHttpRequest"]>[0];

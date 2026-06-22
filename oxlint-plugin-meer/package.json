@@ -1,5 +1,5 @@
 {
-  "name": "@t3tools/oxlint-plugin-t3code",
+  "name": "@meer-ai/oxlint-plugin-meer",
   "private": true,
   "type": "module",
   "scripts": {

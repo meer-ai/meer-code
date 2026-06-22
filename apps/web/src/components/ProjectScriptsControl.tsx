@@ -2,7 +2,7 @@ import type {
   ProjectScript,
   ProjectScriptIcon,
   ResolvedKeybindingsConfig,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import {
   BugIcon,
   ChevronDownIcon,

@@ -11,7 +11,7 @@ import type {
   ServerAuthDescriptor,
   ServerAuthSessionMethod,
   AuthWebSocketTokenResult,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import * as Data from "effect/Data";
 import * as DateTime from "effect/DateTime";
 import * as Context from "effect/Context";

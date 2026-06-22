@@ -7,7 +7,7 @@ import {
   type TerminalMetadataStreamEvent,
   type TerminalOpenInput,
   type TerminalRestartInput,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import * as Data from "effect/Data";
 import * as Duration from "effect/Duration";
 import * as Effect from "effect/Effect";

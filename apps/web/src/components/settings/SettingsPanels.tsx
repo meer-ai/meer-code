@@ -10,10 +10,10 @@ import {
   type ProviderInstanceConfig,
   type ProviderInstanceId,
   type ScopedThreadRef,
-} from "@t3tools/contracts";
-import { scopeThreadRef } from "@t3tools/client-runtime";
-import { DEFAULT_UNIFIED_SETTINGS } from "@t3tools/contracts/settings";
-import { createModelSelection } from "@t3tools/shared/model";
+} from "@meer-ai/contracts";
+import { scopeThreadRef } from "@meer-ai/client-runtime";
+import { DEFAULT_UNIFIED_SETTINGS } from "@meer-ai/contracts/settings";
+import { createModelSelection } from "@meer-ai/shared/model";
 import * as Arr from "effect/Array";
 import * as Duration from "effect/Duration";
 import * as Equal from "effect/Equal";

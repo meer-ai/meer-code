@@ -10,10 +10,10 @@ import {
   type SourceControlProviderAuth,
   type SourceControlRepositoryCloneUrls,
   type SourceControlRepositoryVisibility,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/unstable/http";
-import { sanitizeBranchFragment } from "@t3tools/shared/git";
-import { detectSourceControlProviderFromRemoteUrl } from "@t3tools/shared/sourceControl";
+import { sanitizeBranchFragment } from "@meer-ai/shared/git";
+import { detectSourceControlProviderFromRemoteUrl } from "@meer-ai/shared/sourceControl";
 
 import * as BitbucketPullRequests from "./bitbucketPullRequests.ts";
 import * as SourceControlProvider from "./SourceControlProvider.ts";

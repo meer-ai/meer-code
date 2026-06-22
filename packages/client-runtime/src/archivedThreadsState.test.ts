@@ -1,4 +1,4 @@
-import { EnvironmentId, type OrchestrationShellSnapshot } from "@t3tools/contracts";
+import { EnvironmentId, type OrchestrationShellSnapshot } from "@meer-ai/contracts";
 import { AtomRegistry } from "effect/unstable/reactivity";
 import { afterEach, describe, expect, it, vi } from "vitest";
 

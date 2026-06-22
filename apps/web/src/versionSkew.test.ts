@@ -1,4 +1,4 @@
-import { EnvironmentId } from "@t3tools/contracts";
+import { EnvironmentId } from "@meer-ai/contracts";
 import { describe, expect, it } from "vitest";
 
 import { APP_VERSION } from "./branding";

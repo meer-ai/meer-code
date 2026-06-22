@@ -8,7 +8,7 @@ import {
   type OrchestrationShellStreamEvent,
   type ServerConfig,
   ThreadId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 import {
   createWsRpcClient as createBaseWsRpcClient,
   type WsRpcClient,
@@ -17,7 +17,7 @@ import {
   fetchRemoteSessionState,
   isRemoteEnvironmentAuthHttpError,
   resolveRemoteWebSocketConnectionUrl,
-} from "@t3tools/client-runtime";
+} from "@meer-ai/client-runtime";
 
 import { type QueryClient } from "@tanstack/react-query";
 import { Throttler } from "@tanstack/react-pacer";
@@ -27,7 +27,7 @@ import {
   scopedThreadKey,
   scopeProjectRef,
   scopeThreadRef,
-} from "@t3tools/client-runtime";
+} from "@meer-ai/client-runtime";
 
 import {
   markPromotedDraftThreadByRef,
@@ -79,7 +79,7 @@ import {
 import { getClientSettings } from "~/hooks/useSettings";
 import { subscribeTerminalMetadata, terminalSessionManager } from "../../terminalSessionState";
 import { resetWsReconnectBackoff } from "~/rpc/wsConnectionState";
-import { resolveRemotePairingTarget } from "@t3tools/shared/remote";
+import { resolveRemotePairingTarget } from "@meer-ai/shared/remote";
 
 type EnvironmentServiceState = {
   readonly queryClient: QueryClient;
@@ -135,7 +135,7 @@ let lastBrowserResumeReconnectAt = Number.NEGATIVE_INFINITY;
 
 // TODO(CLIENT-RUNTIME MIGRATION - DO NOT EXPAND THIS WEB-ONLY COPY):
 // This file still owns web's legacy thread-detail subscription cache. Mobile
-// uses createThreadDetailManager from @t3tools/client-runtime for the same
+// uses createThreadDetailManager from @meer-ai/client-runtime for the same
 // retain/reconnect/evict lifecycle. When touching this logic, prefer migrating
 // web to the shared manager or extracting the missing adapter layer instead of
 // adding more behavior here.
@@ -1095,7 +1095,7 @@ function createEnvironmentConnectionHandlers() {
     syncShellSnapshot: (snapshot: OrchestrationShellSnapshot, environmentId: EnvironmentId) => {
       // TODO(CLIENT-RUNTIME MIGRATION - DO NOT EXPAND THIS WEB-ONLY COPY):
       // Shell snapshots already have createShellSnapshotManager in
-      // @t3tools/client-runtime. Web currently projects snapshots straight into
+      // @meer-ai/client-runtime. Web currently projects snapshots straight into
       // its denormalized Zustand store; future shell changes should migrate or
       // bridge to the shared manager instead of growing this handler.
       if (

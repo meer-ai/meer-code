@@ -4,7 +4,7 @@ import noInlineSchemaCompile from "./rules/no-inline-schema-compile.js";
 
 export default definePlugin({
   meta: {
-    name: "t3code",
+    name: "meer",
   },
   rules: {
     "no-inline-schema-compile": noInlineSchemaCompile,

@@ -1,4 +1,4 @@
-import { type ApprovalRequestId } from "@t3tools/contracts";
+import { type ApprovalRequestId } from "@meer-ai/contracts";
 import { memo, useEffect, useEffectEvent, useRef } from "react";
 import { type PendingUserInput } from "../../session-logic";
 import {

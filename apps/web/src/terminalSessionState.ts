@@ -12,13 +12,13 @@ import {
   type KnownTerminalSession,
   type TerminalSessionTarget,
   type TerminalSessionState,
-} from "@t3tools/client-runtime";
+} from "@meer-ai/client-runtime";
 import type {
   EnvironmentId,
   TerminalAttachInput,
   TerminalSessionSnapshot,
   ThreadId,
-} from "@t3tools/contracts";
+} from "@meer-ai/contracts";
 
 import { appAtomRegistry } from "./rpc/atomRegistry";
 

@@ -6,14 +6,14 @@ import {
   ProviderInstanceId,
   ProviderDriverKind,
   ThreadId,
-} from "@t3tools/contracts";
-import { scopedThreadKey, scopeThreadRef } from "@t3tools/client-runtime";
+} from "@meer-ai/contracts";
+import { scopedThreadKey, scopeThreadRef } from "@meer-ai/client-runtime";
 import "../../index.css";
 
 import { page } from "vitest/browser";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { render } from "vitest-browser-react";
-import { createModelCapabilities, createModelSelection } from "@t3tools/shared/model";
+import { createModelCapabilities, createModelSelection } from "@meer-ai/shared/model";
 
 import { CompactComposerControlsMenu } from "./CompactComposerControlsMenu";
 import { TraitsMenuContent } from "./TraitsPicker";

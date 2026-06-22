@@ -1,4 +1,4 @@
-import type { SourceControlDiscoveryResult } from "@t3tools/contracts";
+import type { SourceControlDiscoveryResult } from "@meer-ai/contracts";
 import * as Clock from "effect/Clock";
 import * as Effect from "effect/Effect";
 import { Atom, type AtomRegistry } from "effect/unstable/reactivity";

@@ -1,4 +1,4 @@
-import { MeerSettings, ProviderDriverKind } from "@t3tools/contracts";
+import { MeerSettings, ProviderDriverKind } from "@meer-ai/contracts";
 import type * as Schema from "effect/Schema";
 import { MeerIcon, type Icon } from "../Icons";
 
