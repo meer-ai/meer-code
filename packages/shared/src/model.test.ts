@@ -71,11 +71,10 @@ const claudeCaps: ModelCapabilities = createModelCapabilities({
 });
 
 describe("normalizeModelSlug", () => {
-  it("maps known aliases to canonical slugs", () => {
-    const claude = ProviderDriverKind.make("claudeAgent");
-    expect(normalizeModelSlug("gpt-5-codex")).toBe("gpt-5.4");
-    expect(normalizeModelSlug("5.3")).toBe("gpt-5.3-codex");
-    expect(normalizeModelSlug("sonnet", claude)).toBe("claude-sonnet-4-6");
+  it("trims and passes through slugs when no aliases are configured", () => {
+    expect(normalizeModelSlug("gpt-5.4")).toBe("gpt-5.4");
+    expect(normalizeModelSlug("  gpt-5.4  ")).toBe("gpt-5.4");
+    expect(normalizeModelSlug("custom/internal-model")).toBe("custom/internal-model");
   });
 
   it("returns null for empty or missing values", () => {
@@ -104,7 +103,7 @@ describe("resolveModelSlugForProvider", () => {
 });
 
 describe("resolveSelectableModel", () => {
-  it("resolves exact slugs, labels, and aliases", () => {
+  it("resolves exact slugs and display labels", () => {
     const options = [
       { slug: "gpt-5.3-codex", name: "GPT-5.3 Codex" },
       { slug: "claude-sonnet-4-6", name: "Claude Sonnet 4.6" },
@@ -115,9 +114,12 @@ describe("resolveSelectableModel", () => {
     expect(resolveSelectableModel(ProviderDriverKind.make("codex"), "gpt-5.3 codex", options)).toBe(
       "gpt-5.3-codex",
     );
-    expect(resolveSelectableModel(ProviderDriverKind.make("claudeAgent"), "sonnet", options)).toBe(
-      "claude-sonnet-4-6",
-    );
+    expect(
+      resolveSelectableModel(ProviderDriverKind.make("claudeAgent"), "Claude Sonnet 4.6", options),
+    ).toBe("claude-sonnet-4-6");
+    expect(
+      resolveSelectableModel(ProviderDriverKind.make("codex"), "unknown-model", options),
+    ).toBeNull();
   });
 });
 
