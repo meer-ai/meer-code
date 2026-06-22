@@ -260,28 +260,25 @@ describe("provider update launch notification logic", () => {
 
   it("describes a single one-click update", () => {
     const view = getProviderUpdateInitialToastView({
-      updateProviders: [updateCandidate({ driver: driver("codex"), latestVersion: "1.1.0" })],
-      oneClickProviders: [updateCandidate({ driver: driver("codex"), latestVersion: "1.1.0" })],
+      updateProviders: [updateCandidate({ driver: driver("meer"), latestVersion: "1.1.0" })],
+      oneClickProviders: [updateCandidate({ driver: driver("meer"), latestVersion: "1.1.0" })],
     });
 
     expect(view).toMatchObject({
       phase: "initial",
       type: "warning",
-      title: "Update Available: Codex v1.1.0",
+      title: "Update Available: Meer v1.1.0",
       description: "Install the update now or review provider settings.",
     });
   });
 
   it("describes settings-only updates without one-click support", () => {
     const view = getProviderUpdateInitialToastView({
-      updateProviders: [
-        updateCandidate({ driver: driver("codex"), canUpdate: false }),
-        updateCandidate({ driver: driver("cursor"), canUpdate: false }),
-      ],
+      updateProviders: [updateCandidate({ driver: driver("meer"), canUpdate: false })],
       oneClickProviders: [],
     });
 
-    expect(view.description).toBe("Codex and Cursor can be updated from provider settings.");
+    expect(view.description).toBe("Meer can be updated from provider settings.");
   });
 
   it("uses server update state for running progress", () => {
@@ -336,7 +333,7 @@ describe("provider update launch notification logic", () => {
   it("resolves a single-provider completion view from the returned provider snapshot", () => {
     const view = getSingleProviderUpdateProgressToastView(
       provider({
-        driver: driver("codex"),
+        driver: driver("meer"),
         updateState: {
           status: "failed",
           startedAt: checkedAt,
@@ -350,7 +347,7 @@ describe("provider update launch notification logic", () => {
     expect(view).toMatchObject({
       phase: "failed",
       type: "error",
-      title: "Codex v1.1.0 update failed",
+      title: "Meer v1.1.0 update failed",
       description: "command failed",
     });
   });
@@ -359,7 +356,7 @@ describe("provider update launch notification logic", () => {
     const view = getProviderUpdateProgressToastView({
       providers: [
         provider({
-          driver: driver("cursor"),
+          driver: driver("meer"),
           updateState: {
             status: "unchanged",
             startedAt: checkedAt,
@@ -376,7 +373,7 @@ describe("provider update launch notification logic", () => {
       phase: "unchanged",
       type: "warning",
       title: "Provider still needs an update",
-      description: "Cursor still appears outdated. Check provider settings for details.",
+      description: "Meer still appears outdated. Check provider settings for details.",
     });
   });
 
@@ -412,7 +409,7 @@ describe("provider update launch notification logic", () => {
   it("uses the updated version in the single-provider success toast title", () => {
     const view = getSingleProviderUpdateProgressToastView(
       provider({
-        driver: driver("codex"),
+        driver: driver("meer"),
         version: "1.1.0",
         latestVersion: "1.1.0",
         advisoryStatus: "current",
@@ -429,7 +426,7 @@ describe("provider update launch notification logic", () => {
     expect(view).toMatchObject({
       phase: "succeeded",
       type: "success",
-      title: "Codex updated: v1.1.0",
+      title: "Meer updated: v1.1.0",
       description: "New sessions will use the updated provider.",
     });
   });
@@ -462,41 +459,32 @@ describe("provider update launch notification logic", () => {
     ).toEqual([cursor]);
   });
 
-  it("summarizes active provider updates for the sidebar pill", () => {
+  it("summarizes a queued provider update for the sidebar pill", () => {
     const view = getProviderUpdateSidebarPillView([
       provider({
-        driver: driver("codex"),
-        updateState: {
-          status: "running",
-          startedAt: checkedAt,
-          finishedAt: null,
-          message: "Updating provider.",
-          output: null,
-        },
-      }),
-      provider({
-        driver: driver("cursor"),
+        driver: driver("meer"),
         updateState: {
           status: "queued",
           startedAt: null,
           finishedAt: null,
-          message: "Waiting for another provider update to finish.",
+          message: "Waiting for the provider update to start.",
           output: null,
         },
       }),
     ]);
 
     expect(view).toMatchObject({
+      key: "loading:meer:queued",
       tone: "loading",
-      title: "Updating 2 providers",
-      description: "Codex and Cursor updates are in progress.",
+      title: "Updating Meer",
+      description: "Meer update in progress.",
     });
   });
 
   it("uses the provider name for single active sidebar pill updates", () => {
     const view = getProviderUpdateSidebarPillView([
       provider({
-        driver: driver("codex"),
+        driver: driver("meer"),
         updateState: {
           status: "running",
           startedAt: checkedAt,
@@ -508,10 +496,10 @@ describe("provider update launch notification logic", () => {
     ]);
 
     expect(view).toMatchObject({
-      key: "loading:codex:running",
+      key: "loading:meer:running",
       tone: "loading",
-      title: "Updating Codex",
-      description: "Codex update in progress.",
+      title: "Updating Meer",
+      description: "Meer update in progress.",
     });
   });
 
@@ -519,7 +507,7 @@ describe("provider update launch notification logic", () => {
     const view = getProviderUpdateSidebarPillView(
       [
         provider({
-          driver: driver("claudeAgent"),
+          driver: driver("meer"),
           updateState: {
             status: "failed",
             startedAt: checkedAt,
@@ -533,9 +521,9 @@ describe("provider update launch notification logic", () => {
     );
 
     expect(view).toMatchObject({
-      key: "failed:claudeAgent:2026-04-23T10:00:00.000Z:Update command exited with code 1.",
+      key: "failed:meer:2026-04-23T10:00:00.000Z:Update command exited with code 1.",
       tone: "error",
-      title: "Claude v1.1.0 update failed",
+      title: "Meer v1.1.0 update failed",
       description: "Update command exited with code 1.",
       dismissible: true,
     });
@@ -545,7 +533,7 @@ describe("provider update launch notification logic", () => {
     const view = getProviderUpdateSidebarPillView(
       [
         provider({
-          driver: driver("codex"),
+          driver: driver("meer"),
           version: "1.1.0",
           latestVersion: "1.1.0",
           advisoryStatus: "current",
@@ -562,9 +550,9 @@ describe("provider update launch notification logic", () => {
     );
 
     expect(view).toMatchObject({
-      key: "succeeded:codex:2026-04-23T10:00:00.000Z:Provider updated.",
+      key: "succeeded:meer:2026-04-23T10:00:00.000Z:Provider updated.",
       tone: "success",
-      title: "Codex updated: v1.1.0",
+      title: "Meer updated: v1.1.0",
       description: "New sessions will use the updated provider.",
       dismissAfterVisibleMs: 3_000,
     });
@@ -574,7 +562,7 @@ describe("provider update launch notification logic", () => {
     const view = getProviderUpdateSidebarPillView(
       [
         provider({
-          driver: driver("cursor"),
+          driver: driver("meer"),
           updateState: {
             status: "unchanged",
             startedAt: checkedAt,
@@ -588,9 +576,9 @@ describe("provider update launch notification logic", () => {
     );
 
     expect(view).toMatchObject({
-      key: "unchanged:cursor:2026-04-23T10:00:00.000Z:still old",
+      key: "unchanged:meer:2026-04-23T10:00:00.000Z:still old",
       tone: "warning",
-      title: "Cursor still needs an update",
+      title: "Meer still needs an update",
       dismissible: true,
     });
   });
@@ -615,20 +603,10 @@ describe("provider update launch notification logic", () => {
     ).toBeNull();
   });
 
-  it("shows a newer success before falling back to an older failure", () => {
+  it("hides the success sidebar pill once its key is dismissed", () => {
     const providers = [
       provider({
-        driver: driver("claudeAgent"),
-        updateState: {
-          status: "failed",
-          startedAt: checkedAt,
-          finishedAt: checkedAt,
-          message: "Update command exited with code 1.",
-          output: null,
-        },
-      }),
-      provider({
-        driver: driver("codex"),
+        driver: driver("meer"),
         version: "1.2.0",
         latestVersion: "1.2.0",
         advisoryStatus: "current",
@@ -646,20 +624,16 @@ describe("provider update launch notification logic", () => {
       visibleAfterIso: sessionStartedAt,
     });
     expect(successView).toMatchObject({
-      key: "succeeded:codex:2026-04-23T10:01:00.000Z:Provider updated.",
+      key: "succeeded:meer:2026-04-23T10:01:00.000Z:Provider updated.",
       tone: "success",
-      title: "Codex updated: v1.2.0",
+      title: "Meer updated: v1.2.0",
     });
 
-    const failureView = getProviderUpdateSidebarPillView(providers, {
+    const dismissedView = getProviderUpdateSidebarPillView(providers, {
       visibleAfterIso: sessionStartedAt,
-      dismissedKeys: new Set(["succeeded:codex:2026-04-23T10:01:00.000Z:Provider updated."]),
+      dismissedKeys: new Set(["succeeded:meer:2026-04-23T10:01:00.000Z:Provider updated."]),
     });
-    expect(failureView).toMatchObject({
-      key: "failed:claudeAgent:2026-04-23T10:00:00.000Z:Update command exited with code 1.",
-      tone: "error",
-      title: "Claude v1.1.0 update failed",
-    });
+    expect(dismissedView).toBeNull();
   });
 
   it("does not show a sidebar pill for passive update availability", () => {
