@@ -448,7 +448,7 @@ it.effect(
       const providerAdapterLayer = Layer.succeed(ProviderAdapterRegistry, registry);
       const serverSettingsLayer = ServerSettingsService.layerTest({
         providers: {
-          codex: {
+          meer: {
             enabled: false,
           },
         },

@@ -50,12 +50,12 @@ describe("formatDiagnosticsDescription", () => {
 
 describe("buildProviderInstanceUpdatePatch", () => {
   it("promotes an edited default provider into providerInstances and resets the legacy provider", () => {
-    const instanceId = ProviderInstanceId.make("codex");
+    const instanceId = ProviderInstanceId.make("meer");
     const nextInstance = {
-      driver: ProviderDriverKind.make("codex"),
+      driver: ProviderDriverKind.make("meer"),
       enabled: true,
       config: {
-        binaryPath: "/opt/t3/codex",
+        binaryPath: "/opt/meer/meer",
       },
     } satisfies ProviderInstanceConfig;
 
@@ -64,20 +64,20 @@ describe("buildProviderInstanceUpdatePatch", () => {
         ...DEFAULT_SERVER_SETTINGS,
         providers: {
           ...DEFAULT_SERVER_SETTINGS.providers,
-          codex: {
-            ...DEFAULT_SERVER_SETTINGS.providers.codex,
-            binaryPath: "/legacy/codex",
+          meer: {
+            ...DEFAULT_SERVER_SETTINGS.providers.meer,
+            binaryPath: "/legacy/meer",
           },
         },
       },
       instanceId,
       instance: nextInstance,
-      driver: ProviderDriverKind.make("codex"),
+      driver: ProviderDriverKind.make("meer"),
       isDefault: true,
     });
 
     expect(patch.providerInstances?.[instanceId]).toEqual(nextInstance);
-    expect(patch.providers?.codex).toEqual(DEFAULT_SERVER_SETTINGS.providers.codex);
+    expect(patch.providers?.meer).toEqual(DEFAULT_SERVER_SETTINGS.providers.meer);
   });
 
   it("updates custom instances without touching legacy provider settings", () => {

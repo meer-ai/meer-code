@@ -156,13 +156,21 @@ const buildCmd = Command.make(
 
       yield* Effect.log("[cli] Running tsdown...");
       yield* runCommand(
-        ChildProcess.make(process.execPath, ["--run", "build:bundle"], {
-          cwd: serverDir,
-          stdout: config.verbose ? "inherit" : "ignore",
-          stderr: "inherit",
-          // Windows needs shell mode to resolve `.cmd` shims on PATH.
-          shell: process.platform === "win32",
-        }),
+        ChildProcess.make(
+          // process.execPath can contain spaces on Windows (e.g.
+          // "C:\Program Files\nodejs\node.exe"). In shell mode the spawner
+          // concatenates the command unquoted, so cmd splits on the space
+          // ("'C:\Program' is not recognized"). Quote it ourselves on Windows.
+          process.platform === "win32" ? `"${process.execPath}"` : process.execPath,
+          ["--run", "build:bundle"],
+          {
+            cwd: serverDir,
+            stdout: config.verbose ? "inherit" : "ignore",
+            stderr: "inherit",
+            // Windows needs shell mode to resolve `.cmd` shims on PATH.
+            shell: process.platform === "win32",
+          },
+        ),
       );
 
       const webDist = path.join(repoRoot, "apps/web/dist");

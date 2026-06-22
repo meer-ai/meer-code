@@ -16,10 +16,8 @@ describe("ServerSettings.providerInstances (slice-2 invariant)", () => {
   it("decodes a fully empty config (legacy on-disk shape) without complaint", () => {
     const decoded = decodeServerSettings({});
     expect(decoded.providerInstances).toEqual({});
-    // Legacy `providers` struct is still hydrated with its per-driver defaults
-    // so existing call sites keep working through the migration. Meer Code keeps
-    // non-Meer providers disabled unless they are explicitly configured.
-    expect(decoded.providers.codex.enabled).toBe(false);
+    // The `providers` struct is hydrated with Meer's defaults.
+    expect(decoded.providers.meer.enabled).toBe(true);
   });
 
   it("decodes a multi-instance map mixing first-party and fork drivers", () => {
@@ -104,16 +102,15 @@ describe("ServerSettingsPatch string normalization", () => {
         otlpTracesUrl: "  http://localhost:4318/v1/traces  ",
       },
       providers: {
-        codex: {
-          binaryPath: "  /opt/homebrew/bin/codex  ",
-          homePath: "  ~/.codex  ",
+        meer: {
+          binaryPath: "  /opt/homebrew/bin/meer  ",
         },
       },
       providerInstances: {
-        codex_personal: {
-          driver: "  codex  ",
-          displayName: "  Codex Personal  ",
-          config: { homePath: "  ~/.codex-personal  " },
+        fork_personal: {
+          driver: "  someFork  ",
+          displayName: "  Fork Personal  ",
+          config: { homePath: "  ~/.fork-personal  " },
         },
       },
     });
@@ -121,16 +118,16 @@ describe("ServerSettingsPatch string normalization", () => {
     expect(patch.addProjectBaseDirectory).toBe("~/Development");
     expect(patch.textGenerationModelSelection?.model).toBe("gpt-5.4-mini");
     expect(patch.observability?.otlpTracesUrl).toBe("http://localhost:4318/v1/traces");
-    expect(patch.providers?.codex?.binaryPath).toBe("/opt/homebrew/bin/codex");
-    expect(patch.providers?.codex?.homePath).toBe("~/.codex");
-    expect(patch.providerInstances?.[ProviderInstanceId.make("codex_personal")]?.driver).toBe(
-      "codex",
+    expect(patch.providers?.meer?.binaryPath).toBe("/opt/homebrew/bin/meer");
+    // Unknown/fork drivers in the instance map round-trip without loss.
+    expect(patch.providerInstances?.[ProviderInstanceId.make("fork_personal")]?.driver).toBe(
+      "someFork",
     );
-    expect(patch.providerInstances?.[ProviderInstanceId.make("codex_personal")]?.displayName).toBe(
-      "Codex Personal",
+    expect(patch.providerInstances?.[ProviderInstanceId.make("fork_personal")]?.displayName).toBe(
+      "Fork Personal",
     );
-    expect(patch.providerInstances?.[ProviderInstanceId.make("codex_personal")]?.config).toEqual({
-      homePath: "  ~/.codex-personal  ",
+    expect(patch.providerInstances?.[ProviderInstanceId.make("fork_personal")]?.config).toEqual({
+      homePath: "  ~/.fork-personal  ",
     });
   });
 
@@ -141,14 +138,14 @@ describe("ServerSettingsPatch string normalization", () => {
       addProjectBaseDirectory: "  ~/Development  ",
       providers: {
         ...defaultSettings.providers,
-        codex: {
-          ...defaultSettings.providers.codex,
-          binaryPath: "  /opt/homebrew/bin/codex  ",
+        meer: {
+          ...defaultSettings.providers.meer,
+          binaryPath: "  /opt/homebrew/bin/meer  ",
         },
       },
     });
 
     expect(encoded.addProjectBaseDirectory).toBe("~/Development");
-    expect(encoded.providers?.codex?.binaryPath).toBe("/opt/homebrew/bin/codex");
+    expect(encoded.providers?.meer?.binaryPath).toBe("/opt/homebrew/bin/meer");
   });
 });

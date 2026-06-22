@@ -1,13 +1,6 @@
-import {
-  ClaudeSettings,
-  CodexSettings,
-  CursorSettings,
-  MeerSettings,
-  OpenCodeSettings,
-  ProviderDriverKind,
-} from "@t3tools/contracts";
+import { MeerSettings, ProviderDriverKind } from "@t3tools/contracts";
 import type * as Schema from "effect/Schema";
-import { ClaudeAI, CursorIcon, MeerIcon, type Icon, OpenAI, OpenCodeIcon } from "../Icons";
+import { MeerIcon, type Icon } from "../Icons";
 
 type ProviderSettingsSchema = {
   readonly fields: Readonly<Record<string, Schema.Top>>;
@@ -36,31 +29,6 @@ export interface ProviderClientDefinition {
 
 export const PROVIDER_CLIENT_DEFINITIONS: readonly ProviderClientDefinition[] = [
   {
-    value: ProviderDriverKind.make("codex"),
-    label: "Codex",
-    icon: OpenAI,
-    settingsSchema: CodexSettings,
-  },
-  {
-    value: ProviderDriverKind.make("claudeAgent"),
-    label: "Claude",
-    icon: ClaudeAI,
-    settingsSchema: ClaudeSettings,
-  },
-  {
-    value: ProviderDriverKind.make("cursor"),
-    label: "Cursor",
-    icon: CursorIcon,
-    badgeLabel: "Early Access",
-    settingsSchema: CursorSettings,
-  },
-  {
-    value: ProviderDriverKind.make("opencode"),
-    label: "OpenCode",
-    icon: OpenCodeIcon,
-    settingsSchema: OpenCodeSettings,
-  },
-  {
     value: ProviderDriverKind.make("meer"),
     label: "Meer",
     icon: MeerIcon,
@@ -68,17 +36,13 @@ export const PROVIDER_CLIENT_DEFINITIONS: readonly ProviderClientDefinition[] = 
   },
 ];
 
-const MEER_CLIENT_DEFINITIONS = PROVIDER_CLIENT_DEFINITIONS.filter(
-  (definition) => definition.value === ProviderDriverKind.make("meer"),
-);
-
 export const PROVIDER_CLIENT_DEFINITION_BY_VALUE: Partial<
   Record<ProviderDriverKind, ProviderClientDefinition>
 > = Object.fromEntries(
   PROVIDER_CLIENT_DEFINITIONS.map((definition) => [definition.value, definition]),
 );
 
-export const DRIVER_OPTIONS = MEER_CLIENT_DEFINITIONS;
+export const DRIVER_OPTIONS = PROVIDER_CLIENT_DEFINITIONS;
 export const DRIVER_OPTION_BY_VALUE = PROVIDER_CLIENT_DEFINITION_BY_VALUE;
 export type DriverOption = ProviderClientDefinition;
 
